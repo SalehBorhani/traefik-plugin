@@ -1,0 +1,28 @@
+traefik:
+  image:
+    registry: docker.arvancloud.ir
+
+  experimental:
+    plugins:
+      demo:
+        moduleName: github.com/traefik/plugindemo
+        version: v0.2.1
+
+  ingressRoute:
+    dashboard:
+      enabled: true
+
+  gateway:
+    listeners:
+      web:
+        namespacePolicy: "All"
+
+  providers:
+    kubernetesIngress:
+      enabled: true
+
+    kubernetesGateway:
+      enabled: false
+
+  service:
+    type: NodePort
